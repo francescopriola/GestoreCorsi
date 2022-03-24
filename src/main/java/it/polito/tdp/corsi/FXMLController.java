@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.corsi.model.Corso;
 import it.polito.tdp.corsi.model.Model;
+import it.polito.tdp.corsi.model.Studente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -98,12 +99,26 @@ public class FXMLController {
 
     @FXML
     void stampaDivisione(ActionEvent event) {
-
+    	txtRisultato.clear();
+    	String codIns = txtCorso.getText();
+    	
+    	
+    	List<Studente> studenti = this.model.getStudenteByCDS(codIns);
+    	for(Studente s : studenti) {
+    		txtRisultato.appendText(s + "\n");
+    	}
     }
 
     @FXML
     void stampaStudenti(ActionEvent event) {
-
+    	txtRisultato.clear();
+    	String codIns = txtCorso.getText();
+    	
+    	
+    	List<String> studenti = this.model.getStudenteByCorso(codIns);
+    	for(String s : studenti) {
+    		txtRisultato.appendText(s + "\n");
+    	}
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

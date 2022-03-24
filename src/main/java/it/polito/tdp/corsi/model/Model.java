@@ -20,4 +20,12 @@ public class Model {
 		return this.corsoDao.getNumStudentiByPeriodo(periodo);
 	}
 	
+	public List<String> getStudenteByCorso(String codIns){
+		return this.corsoDao.getStudenteByCorso(codIns);
+	}
+	
+	public List<Studente> getStudenteByCDS(String codIns){
+		return this.corsoDao.getStudenteByCDS(codIns);
+	}
+	
 }
