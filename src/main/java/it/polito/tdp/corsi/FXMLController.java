@@ -89,7 +89,7 @@ public class FXMLController {
     		return;
     	}
     	
-    	List<String> studenti = this.model.getStudentiByPeriodo(periodoNumerico);
+    	List<String> studenti = this.model.getNumStudentiByPeriodo(periodoNumerico);
     	for(String s : studenti) {
     		txtRisultato.appendText(s + "\n");
     	}

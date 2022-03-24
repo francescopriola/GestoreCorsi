@@ -38,7 +38,7 @@ public class CorsoDAO {
 		}
 	}
 	
-	public List<String> getStudentiByPeriodo(int periodo){
+	public List<String> getNumStudentiByPeriodo(int periodo){
 		
 		String sql = "SELECT c.`codins`, c.`crediti`, c.`nome`, c.`pd`, COUNT(*) as n "
 				+ "FROM Corso c, iscrizione i "
@@ -68,4 +68,6 @@ public class CorsoDAO {
 			return null;
 		}
 	}
+	
+	public List<Studente> getStudenteByCorso 
 }
