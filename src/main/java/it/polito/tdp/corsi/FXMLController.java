@@ -73,6 +73,26 @@ public class FXMLController {
 
     @FXML
     void numeroStudenti(ActionEvent event) {
+    	txtRisultato.clear();
+    	String periodo = txtPeriodo.getText();
+    	int periodoNumerico;
+    	
+    	try {
+    		periodoNumerico = Integer.parseInt(periodo);
+    	}catch(NumberFormatException e) {
+    		txtRisultato.setText("Inserisci un periodo numerico!");
+    		return;
+    	}
+    	
+    	if(periodoNumerico < 1 || periodoNumerico > 2) {
+    		txtRisultato.setText("Inserisci 1 o 2!");
+    		return;
+    	}
+    	
+    	List<String> studenti = this.model.getStudentiByPeriodo(periodoNumerico);
+    	for(String s : studenti) {
+    		txtRisultato.appendText(s + "\n");
+    	}
     	
     }
 

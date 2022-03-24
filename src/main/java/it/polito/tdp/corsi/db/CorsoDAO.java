@@ -37,4 +37,35 @@ public class CorsoDAO {
 			return null;
 		}
 	}
+	
+	public List<String> getStudentiByPeriodo(int periodo){
+		
+		String sql = "SELECT c.`codins`, c.`crediti`, c.`nome`, c.`pd`, COUNT(*) as n "
+				+ "FROM Corso c, iscrizione i "
+				+ "WHERE c.`codins` = i.`codins` AND c.`pd`= ? "
+				+ "GROUP BY c.`codins`, c.`crediti`, c.`nome`, c.`pd`";
+		
+		List<String> result = new ArrayList<String>();
+		
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, periodo);
+			ResultSet rs = st.executeQuery();
+			
+			while(rs.next()) {
+				Corso c = new Corso(rs.getString("codins"), rs.getInt("crediti"), rs.getString("nome"), rs.getInt("pd"));
+				result.add(c + ", " + rs.getInt("n") + " studenti iscritti.");
+			}
+			
+			st.close();
+			rs.close();
+			conn.close();
+			return result;	
+		}catch(SQLException e) {
+			System.err.println("Errore nel DAO!");
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
