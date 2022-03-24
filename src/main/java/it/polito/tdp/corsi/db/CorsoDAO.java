@@ -69,5 +69,7 @@ public class CorsoDAO {
 		}
 	}
 	
-	public List<Studente> getStudenteByCorso 
+	public List<Studente> getStudenteByCorso(String codIns){
+		return null;
+	}
 }
