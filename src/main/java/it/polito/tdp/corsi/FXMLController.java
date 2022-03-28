@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.corsi.model.Corso;
+import it.polito.tdp.corsi.model.Divisione;
 import it.polito.tdp.corsi.model.Model;
 import it.polito.tdp.corsi.model.Studente;
 import javafx.event.ActionEvent;
@@ -102,9 +103,17 @@ public class FXMLController {
     	txtRisultato.clear();
     	String codIns = txtCorso.getText();
     	
+    	if(codIns == null || codIns == ("")) {
+    		txtRisultato.appendText("Per favore, inserisci un codice di un corso");
+    		return;
+    	}
     	
-    	List<Studente> studenti = this.model.getStudenteByCDS(codIns);
-    	for(Studente s : studenti) {
+    	//TODO Controllo che il corso esista
+    	
+    	
+    	List<Divisione> studenti = this.model.getDivisioneStudenti(codIns);
+    	Collections.sort(studenti);
+    	for(Divisione s : studenti) {
     		txtRisultato.appendText(s + "\n");
     	}
     }
@@ -114,9 +123,16 @@ public class FXMLController {
     	txtRisultato.clear();
     	String codIns = txtCorso.getText();
     	
+    	if(codIns == null || codIns.equals("")) {
+    		txtRisultato.appendText("Per favore, inserisci un codice di un corso. \n");
+    		return;
+    	}
     	
-    	List<String> studenti = this.model.getStudenteByCorso(codIns);
-    	for(String s : studenti) {
+    	//TODO Controllo che il corso esista
+    	
+    	
+    	List<Studente> studenti = this.model.getStudenteByCorso(codIns);
+    	for(Studente s : studenti) {
     		txtRisultato.appendText(s + "\n");
     	}
     }

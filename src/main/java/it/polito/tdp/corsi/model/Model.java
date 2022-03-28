@@ -7,9 +7,11 @@ import it.polito.tdp.corsi.db.*;
 public class Model {
 	
 	private CorsoDAO corsoDao;
+	private StudenteDAO studenteDao;
 	
 	public Model() {
 		corsoDao = new CorsoDAO();
+		studenteDao = new StudenteDAO();
 	}
 	
 	public List<Corso> getCorsiByPeriodo(int periodo){
@@ -20,12 +22,12 @@ public class Model {
 		return this.corsoDao.getIscritti(periodo);
 	}
 	
-	public List<String> getStudenteByCorso(String codIns){
-		return this.corsoDao.getStudenteByCorso(codIns);
+	public List<Studente> getStudenteByCorso(String codIns){
+		return this.studenteDao.getStudenteByCorso(codIns);
 	}
 	
-	public List<Studente> getStudenteByCDS(String codIns){
-		return this.corsoDao.getStudenteByCDS(codIns);
+	public List<Divisione> getDivisioneStudenti(String codIns){
+		return this.studenteDao.getDivisioneStudenti(codIns);
 	}
 	
 }
