@@ -16,8 +16,8 @@ public class Model {
 		return this.corsoDao.getCorsiByPeriodo(periodo);
 	}
 	
-	public List<String> getNumStudentiByPeriodo(int periodo){
-		return this.corsoDao.getNumStudentiByPeriodo(periodo);
+	public Map<Corso, Integer> getIscritti(int periodo){
+		return this.corsoDao.getIscritti(periodo);
 	}
 	
 	public List<String> getStudenteByCorso(String codIns){

@@ -5,7 +5,7 @@
 package it.polito.tdp.corsi;
 
 import java.net.URL;
-import java.util.List;
+import java.util.*;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.corsi.model.Corso;
@@ -90,9 +90,9 @@ public class FXMLController {
     		return;
     	}
     	
-    	List<String> studenti = this.model.getNumStudentiByPeriodo(periodoNumerico);
-    	for(String s : studenti) {
-    		txtRisultato.appendText(s + "\n");
+    	Map<Corso, Integer> iscritti = this.model.getIscritti(periodoNumerico);
+    	for(Corso c : iscritti.keySet()) {
+    		txtRisultato.appendText(c + ", " + iscritti.get(c) + "\n");
     	}
     	
     }

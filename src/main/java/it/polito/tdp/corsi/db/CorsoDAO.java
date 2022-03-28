@@ -38,24 +38,24 @@ public class CorsoDAO {
 		}
 	}
 	
-	public List<String> getNumStudentiByPeriodo(int periodo){
+	public Map<Corso, Integer> getIscritti(int periodo){
 		
 		String sql = "SELECT c.`codins`, c.`crediti`, c.`nome`, c.`pd`, COUNT(*) as n "
 				+ "FROM Corso c, iscrizione i "
 				+ "WHERE c.`codins` = i.`codins` AND c.`pd`= ? "
 				+ "GROUP BY c.`codins`, c.`crediti`, c.`nome`, c.`pd`";
 		
-		List<String> result = new ArrayList<String>();
+		Map<Corso, Integer>  result = new HashMap<Corso, Integer>();
 		
 		try {
 			Connection conn = ConnectDB.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setInt(1, periodo);
+			st.setInt(1, periodo);	//I parametri partono da 1 e non da 0
 			ResultSet rs = st.executeQuery();
 			
 			while(rs.next()) {
 				Corso c = new Corso(rs.getString("codins"), rs.getInt("crediti"), rs.getString("nome"), rs.getInt("pd"));
-				result.add(c + ", " + rs.getInt("n") + " studenti iscritti.");
+				result.put(c, rs.getInt("n"));
 			}
 			
 			st.close();
