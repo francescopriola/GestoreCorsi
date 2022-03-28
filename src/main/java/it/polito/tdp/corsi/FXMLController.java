@@ -124,7 +124,7 @@ public class FXMLController {
     	String codIns = txtCorso.getText();
     	
     	if(codIns == null || codIns.equals("")) {
-    		txtRisultato.appendText("Per favore, inserisci un codice di un corso. \n");
+    		txtRisultato.appendText("Per favore, inserisci un codice di un corso esistente. \n");
     		return;
     	}
     	
